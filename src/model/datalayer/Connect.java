@@ -124,7 +124,6 @@ public class Connect {
             Connection connection = DriverManager.getConnection(url, user, password);
             Statement statement = connection.createStatement();
 
-            statement.executeUpdate("DROP DATABASE IF EXISTS `" + database + "`;");
             statement.executeUpdate("CREATE DATABASE IF NOT EXISTS `" + database + "`;");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `" + database + "`.`user`( `id` INT NOT NULL AUTO_INCREMENT, `name` VARCHAR(60) NOT NULL, `username` VARCHAR(20) NOT NULL, `password` VARCHAR(20) NOT NULL, PRIMARY KEY (`id`), UNIQUE (`username`)) ENGINE = InnoDB DEFAULT CHARSET utf8;");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `" + database + "`.`supplier`( `id` INT NOT NULL AUTO_INCREMENT, `name` VARCHAR(100) NOT NULL, `phone` VARCHAR(20) NOT NULL, PRIMARY KEY (`id`), UNIQUE (`name`)) ENGINE = InnoDB DEFAULT CHARSET utf8;");
