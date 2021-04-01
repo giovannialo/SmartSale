@@ -26,6 +26,10 @@ public class TextFieldMask {
      * Este método deve ser chamado dentro de um evento de keyUp.
      */
     public void formatter() {
+        if (textField.getLength() == 0) {
+            return;
+        }
+
         StringBuilder onlyValidCharacters = new StringBuilder();
         StringBuilder masked = new StringBuilder();
 

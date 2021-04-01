@@ -1,22 +1,32 @@
 package model.entity;
 
+import javafx.collections.FXCollections;
+import javafx.scene.control.ComboBox;
 import model.datalayer.DataLayer;
 
 import java.util.ArrayList;
 
-public class MaterialModel extends DataLayer {
+import static java.lang.Integer.parseInt;
+
+public class ProductModel extends DataLayer {
 
     private MeasureTypeModel currentMeasureTypeModel;
 
-    public MaterialModel(String behaviorToSave) {
+    private final ComboBox comboBoxAmount;
+
+    public ProductModel(String behaviorToSave) {
         super(behaviorToSave);
 
-        this.table = "material";
+        this.table = "product";
         this.required = new String[]{
             "name",
+            "price",
             "stock",
             "alert_ending"
         };
+
+        this.comboBoxAmount = new ComboBox<>();
+        comboBoxAmount.setPrefWidth(150);
     }
 
     public String getMeasureTypeId() {
@@ -43,20 +53,20 @@ public class MaterialModel extends DataLayer {
         data.put("name", name.trim());
     }
 
+    public String getPrice() {
+        return (String) data.get("price");
+    }
+
+    public void setPrice(String price) {
+        data.put("price", price.trim());
+    }
+
+    public String getPriceFull() {
+        return String.format("R$ %.2f", Double.parseDouble(data.get("price").toString()));
+    }
+
     public String getStock() {
         return (String) data.get("stock");
-    }
-
-    public void setStock(String stock) {
-        data.put("stock", stock.trim());
-    }
-
-    public String getAlertEnding() {
-        return (String) data.get("alert_ending");
-    }
-
-    public void setAlertEnding(String alertEnding) {
-        data.put("alert_ending", alertEnding.trim());
     }
 
     public String getStockFull() {
@@ -67,25 +77,48 @@ public class MaterialModel extends DataLayer {
         return treatStock(getStock());
     }
 
+    public void setStock(String stock) {
+        data.put("stock", stock.trim());
+    }
+
+    public String getAlertEnding() {
+        return (String) data.get("alert_ending");
+    }
+
     public String getAlertEndingFull() {
         return treatStock(getAlertEnding());
     }
 
+    public void setAlertEnding(String alertEnding) {
+        data.put("alert_ending", alertEnding.trim());
+    }
+
+    public ComboBox getComboBoxAmount() {
+        ArrayList stock = new ArrayList();
+
+        for (int i = 0; i <= parseInt(getStock()); i++) {
+            stock.add(i);
+        }
+
+        comboBoxAmount.setItems(FXCollections.observableList(stock));
+        return comboBoxAmount;
+    }
+
     public ArrayList getSuppliers() {
-        return (new MaterialHasSupplierModel(null)).find(
-            "material_id = '" + this.getId() + "'"
+        return (new ProductHasSupplierModel(null)).find(
+            "product_id = '" + this.getId() + "'"
         ).fetchAll();
     }
 
     @Override
     public boolean save() {
-        MaterialModel materialModel = new MaterialModel(null);
+        ProductModel productModel = new ProductModel(null);
 
         String generalTerms = (data.get("id") == null ? "" : " AND id != '" + getId() + "'");
         String terms = "name = '" + getName() + "'";
 
         // Verifica se o nome já existe
-        if (materialModel.find(terms + generalTerms).fetch() != null) {
+        if (productModel.find(terms + generalTerms).fetch() != null) {
             returnMessage.put("name", "Já existe");
             return false;
         }

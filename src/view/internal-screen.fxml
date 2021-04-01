@@ -81,19 +81,6 @@
                   </AnchorPane>
                </graphic>
             </Button>
-            <Button fx:id="buttonSidenavItemMaterial" layoutX="10.0" layoutY="153.0" mnemonicParsing="false" onAction="#buttonSidenavItemMaterialOnAction" styleClass="sidenav-menu-item" text="Materiais">
-               <graphic>
-                  <AnchorPane style="-height: 16px;">
-                     <styleClass>
-                        <String fx:value="icon-svg" />
-                        <String fx:value="icon-box-open-full" />
-                     </styleClass>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </AnchorPane>
-               </graphic>
-            </Button>
             <Button fx:id="buttonSidenavItemProduct" layoutX="10.0" layoutY="199.0" mnemonicParsing="false" onAction="#buttonSidenavItemProductOnAction" styleClass="sidenav-menu-item" text="Produtos">
                <graphic>
                   <AnchorPane style="-height: 16px;">
@@ -159,7 +146,7 @@
                   </AnchorPane>
                </graphic>
             </Button>
-            <AnchorPane prefHeight="230.0">
+            <AnchorPane prefHeight="284.0">
                <children>
                   <ImageView fitHeight="60.0" fitWidth="72.0" layoutX="10.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
                      <image>

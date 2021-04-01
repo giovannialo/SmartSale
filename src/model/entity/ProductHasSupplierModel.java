@@ -2,24 +2,24 @@ package model.entity;
 
 import model.datalayer.DataLayer;
 
-public class MaterialHasSupplierModel extends DataLayer {
+public class ProductHasSupplierModel extends DataLayer {
 
-    public MaterialHasSupplierModel(String behaviorToSave) {
+    public ProductHasSupplierModel(String behaviorToSave) {
         super(behaviorToSave);
 
-        this.table = "material_has_supplier";
+        this.table = "product_has_supplier";
         this.required = new String[]{
-            "material_id",
+            "product_id",
             "supplier_id"
         };
     }
 
-    public String getMaterialId() {
-        return (String) data.get("material_id");
+    public String getProductId() {
+        return (String) data.get("product_id");
     }
 
-    public void setMaterialId(String materialId) {
-        data.put("material_id", materialId);
+    public void setProductId(String productId) {
+        data.put("product_id", productId);
     }
 
     public String getSupplierId() {

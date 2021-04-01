@@ -13,4 +13,14 @@ public class Is {
         phone = phone.replaceAll("[^0-9]", "");
         return phone.length() == 10 || phone.length() == 11;
     }
+
+    /**
+     * Valida o formato de um CEP brasileiro.
+     *
+     * @param zipcode String com um cep.
+     * @return True se for válido, false caso contrário.
+     */
+    public static boolean zipcode(String zipcode) {
+        return zipcode.replaceAll("[^0-9]", "").length() == 8;
+    }
 }

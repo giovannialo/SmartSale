@@ -2,8 +2,6 @@ package controller;
 
 import helper.Form;
 import helper.TextFieldMask;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

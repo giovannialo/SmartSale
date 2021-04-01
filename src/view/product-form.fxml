@@ -10,12 +10,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MaterialFormController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1018.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductFormController">
    <children>
       <AnchorPane>
          <children>
             <TextField fx:id="textFieldName" layoutX="40.0" layoutY="44.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="9.0" />
-            <Label layoutX="50.0" text="Nome do material" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
+            <Label layoutX="50.0" text="Nome do produto" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
                <styleClass>
                   <String fx:value="body" />
                   <String fx:value="form-label" />
@@ -29,9 +29,26 @@
             </Label>
          </children>
       </AnchorPane>
+      <AnchorPane layoutX="10.0" layoutY="10.0">
+         <children>
+            <TextField fx:id="textFieldPrice" layoutX="40.0" layoutY="44.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="9.0" />
+            <Label layoutX="50.0" text="Preço" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
+               <styleClass>
+                  <String fx:value="body" />
+                  <String fx:value="form-label" />
+               </styleClass>
+            </Label>
+            <Label fx:id="labelFeedbackPrice" layoutX="164.0" layoutY="6.0" textAlignment="RIGHT" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+               <styleClass>
+                  <String fx:value="body" />
+                  <String fx:value="form-feedback" />
+               </styleClass>
+            </Label>
+         </children>
+      </AnchorPane>
       <AnchorPane>
          <children>
-            <TextField fx:id="textFieldStock" layoutX="30.0" layoutY="9.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="288.0" AnchorPane.topAnchor="9.0" />
+            <TextField fx:id="textFieldStock" layoutX="30.0" layoutY="9.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="648.0" AnchorPane.topAnchor="9.0" />
             <Label layoutX="50.0" text="Estoque" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
                <styleClass>
                   <String fx:value="body" />
@@ -44,31 +61,27 @@
                   <String fx:value="form-feedback" />
                </styleClass>
             </Label>
-            <ComboBox fx:id="comboBoxMeasureType" layoutX="635.0" layoutY="22.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="750.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="9.0" />
-            <Label layoutX="60.0" layoutY="10.0" text="Medida" AnchorPane.leftAnchor="770.0" AnchorPane.topAnchor="0.0">
+            <ComboBox fx:id="comboBoxMeasureType" layoutX="390.0" layoutY="9.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="9.0" />
+            <Label layoutX="410.0" text="Medida" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="0.0">
                <styleClass>
                   <String fx:value="body" />
                   <String fx:value="form-label" />
                </styleClass>
             </Label>
-            <Label fx:id="labelFeedbackMeasureType" layoutX="710.0" layoutY="10.0" textAlignment="RIGHT" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+            <Label fx:id="labelFeedbackMeasureType" layoutX="608.0" textAlignment="RIGHT" AnchorPane.rightAnchor="410.0" AnchorPane.topAnchor="0.0">
                <styleClass>
                   <String fx:value="body" />
                   <String fx:value="form-feedback" />
                </styleClass>
             </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="10.0" layoutY="79.0">
-         <children>
-            <TextField fx:id="textFieldAlertEnding" layoutX="30.0" layoutY="9.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="9.0" />
-            <Label layoutX="50.0" text="Alerta para fim do estoque" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
+            <TextField fx:id="textFieldAlertEnding" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="648.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="9.0" />
+            <Label text="Alerta para fim do estoque" AnchorPane.leftAnchor="668.0" AnchorPane.topAnchor="0.0">
                <styleClass>
                   <String fx:value="body" />
                   <String fx:value="form-label" />
                </styleClass>
             </Label>
-            <Label fx:id="labelFeedbackAlertEnding" layoutX="550.0" textAlignment="RIGHT" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+            <Label fx:id="labelFeedbackAlertEnding" textAlignment="RIGHT" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
                <styleClass>
                   <String fx:value="body" />
                   <String fx:value="form-feedback" />
@@ -78,16 +91,16 @@
       </AnchorPane>
       <AnchorPane prefHeight="497.0">
          <children>
-            <TableView fx:id="tableViewSupplier" layoutX="48.0" layoutY="23.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+            <TableView fx:id="tableViewSupplier" layoutX="48.0" layoutY="23.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="57.0">
                <columns>
-                  <TableColumn fx:id="tableColumnSupplierCheck" editable="false" prefWidth="40.0" resizable="false" sortable="false" />
+                  <TableColumn fx:id="tableColumnSupplierCheck" editable="false" prefWidth="40.0" resizable="false" sortable="false" text="#" />
                   <TableColumn fx:id="tableColumnSupplierName" editable="false" prefWidth="916.0" resizable="false" text="Nome" />
                </columns>
             </TableView>
-            <Label styleClass="body" text="Fornecedores" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="0.0" />
+            <Label styleClass="body" text="Fornecedores" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="27.0" />
             <AnchorPane layoutX="412.0" prefWidth="300.0" AnchorPane.rightAnchor="30.0">
                <children>
-                  <TextField fx:id="textFieldSearch" layoutX="30.0" layoutY="19.0" styleClass="field-icon-left-sm" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="19.0" />
+                  <TextField fx:id="textFieldSearch" layoutX="30.0" layoutY="19.0" styleClass="field-icon-left-sm" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="19.0" />
                   <Label layoutX="50.0" layoutY="10.0" text="O que você procura?" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="10.0">
                      <styleClass>
                         <String fx:value="body" />

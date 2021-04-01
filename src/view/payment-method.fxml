@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1018.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SupplierController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1018.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentMethodController">
    <children>
       <AnchorPane>
          <children>
@@ -83,10 +83,9 @@
       </AnchorPane>
       <AnchorPane prefHeight="654.0">
          <children>
-            <TableView fx:id="tableViewSupplier" layoutX="48.0" layoutY="30.0" styleClass="table-view-select" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="tableViewPaymentMethod" layoutX="48.0" layoutY="30.0" styleClass="table-view-select" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0">
                <columns>
-                  <TableColumn fx:id="tableColumnSupplierName" editable="false" prefWidth="756.0" resizable="false" text="Nome" />
-                  <TableColumn fx:id="tableColumnSupplierPhone" editable="false" prefWidth="200.0" resizable="false" text="Telefone" />
+                  <TableColumn fx:id="tableColumnPaymentMethodName" editable="false" prefWidth="956.0" resizable="false" text="Nome" />
                </columns>
             </TableView>
          </children>

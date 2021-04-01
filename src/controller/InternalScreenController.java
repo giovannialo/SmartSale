@@ -33,9 +33,6 @@ public class InternalScreenController {
     private Button buttonSidenavItemSupplier;
 
     @FXML
-    private Button buttonSidenavItemMaterial;
-
-    @FXML
     private Button buttonSidenavItemProduct;
 
     @FXML
@@ -62,12 +59,14 @@ public class InternalScreenController {
 
     @FXML
     protected void buttonSidenavItemCustomerOnAction() {
-
+        Main.changeScreen("customer");
+        toggleSidenavItemActive(buttonSidenavItemCustomer);
     }
 
     @FXML
     protected void buttonSidenavItemDeveloperOnAction() {
-
+        Main.changeScreen("development");
+        toggleSidenavItemActive(buttonSidenavItemDeveloper);
     }
 
     @FXML
@@ -77,24 +76,21 @@ public class InternalScreenController {
     }
 
     @FXML
-    protected void buttonSidenavItemMaterialOnAction() {
-        Main.changeScreen("material");
-        toggleSidenavItemActive(buttonSidenavItemMaterial);
-    }
-
-    @FXML
     protected void buttonSidenavItemPaymentMethodOnAction() {
-
+        Main.changeScreen("payment-method");
+        toggleSidenavItemActive(buttonSidenavItemPaymentMethod);
     }
 
     @FXML
     protected void buttonSidenavItemProductOnAction() {
-
+        Main.changeScreen("product");
+        toggleSidenavItemActive(buttonSidenavItemProduct);
     }
 
     @FXML
     protected void buttonSidenavItemSaleOnAction() {
-
+        Main.changeScreen("sale");
+        toggleSidenavItemActive(buttonSidenavItemSale);
     }
 
     @FXML

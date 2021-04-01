@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SupplierFormController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1018.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SupplierFormController">
    <children>
       <AnchorPane>
          <children>
@@ -45,7 +45,7 @@
       </AnchorPane>
       <AnchorPane>
          <children>
-            <Button layoutX="30.0" mnemonicParsing="false" onAction="#buttonSubmitOnAction" styleClass="button-success" text="SALVAR" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="0.0" />
+            <Button layoutX="30.0" mnemonicParsing="false" onAction="#buttonSubmitOnAction" styleClass="button-success" text="SALVAR" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="0.0" />
             <Button layoutX="134.0" mnemonicParsing="false" onAction="#buttonCancelOnAction" styleClass="button-outline-primary" text="CANCELAR" AnchorPane.leftAnchor="134.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>

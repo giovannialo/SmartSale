@@ -8,16 +8,16 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.entity.MaterialHasSupplierModel;
-import model.entity.MaterialModel;
+import model.entity.ProductHasSupplierModel;
 import model.entity.MeasureTypeModel;
+import model.entity.ProductModel;
 import model.entity.SupplierModel;
 
 import java.util.ArrayList;
 
-public class MaterialFormController {
+public class ProductFormController {
 
-    private MaterialModel materialModel;
+    private ProductModel productModel;
 
     @FXML
     private Label labelFeedbackName;
@@ -33,6 +33,9 @@ public class MaterialFormController {
 
     @FXML
     private TextField textFieldName;
+
+    @FXML
+    private TextField textFieldPrice;
 
     @FXML
     private TextField textFieldStock;
@@ -63,7 +66,7 @@ public class MaterialFormController {
 
     @FXML
     protected void buttonCancelOnAction() {
-        Main.changeScreen("material");
+        Main.changeScreen("product");
     }
 
     @FXML
@@ -113,51 +116,54 @@ public class MaterialFormController {
             return;
         }
 
-        MaterialModel materialModel = (this.materialModel != null ? this.materialModel : new MaterialModel(null));
-        materialModel.setMeasureTypeId(
+        ProductModel productModel = (this.productModel != null ? this.productModel : new ProductModel(null));
+        productModel.setMeasureTypeId(
             comboBoxMeasureType.getSelectionModel().getSelectedItem().getId()
         );
-        materialModel.setName(textFieldName.getText());
-        materialModel.setStock(textFieldStock.getText());
-        materialModel.setAlertEnding(textFieldAlertEnding.getText());
+        productModel.setName(textFieldName.getText());
+        productModel.setPrice(textFieldPrice.getText());
+        productModel.setStock(textFieldStock.getText());
+        productModel.setAlertEnding(textFieldAlertEnding.getText());
 
-        boolean save = materialModel.save();
+        boolean save = productModel.save();
 
-        if (materialModel.fail() != null) {
-            System.out.println(materialModel.fail().getMessage());
+        if (productModel.fail() != null) {
+            System.out.println(productModel.fail().getMessage());
             return;
         }
 
         if (!save) {
-            if (materialModel.returnMessage().get("name") != null) {
+            if (productModel.returnMessage().get("name") != null) {
                 Form.invalidField(
                     textFieldName,
                     labelFeedbackName,
-                    materialModel.returnMessage().get("name").toString()
+                    productModel.returnMessage().get("name").toString()
                 );
             }
 
             return;
         }
 
-        for (int i = 0; i < tableViewSupplier.getItems().size(); i++) {
-            if (tableViewSupplier.getItems().get(i).getCheckBox().isSelected()) {
-                MaterialHasSupplierModel materialHasSupplierModel = new MaterialHasSupplierModel(null);
-                materialHasSupplierModel.setSupplierId(tableViewSupplier.getItems().get(i).getId());
-                materialHasSupplierModel.setMaterialId(materialModel.getId());
-                materialHasSupplierModel.save();
-            } else {
-                MaterialHasSupplierModel materialHasSupplierModel = (MaterialHasSupplierModel) (new MaterialHasSupplierModel(null)).find(
-                    "supplier_id = '" + tableViewSupplier.getItems().get(i).getId() + "' AND material_id = '" + materialModel.getId() + "'"
-                ).fetch();
+        ArrayList<ProductHasSupplierModel> productHasSupplierList = (new ProductHasSupplierModel(null)).find(
+            "product_id = '" + productModel.getId() + "'"
+        ).fetchAll();
 
-                if (materialHasSupplierModel != null) {
-                    materialHasSupplierModel.destroy();
-                }
+        if (productHasSupplierList != null) {
+            for (ProductHasSupplierModel productHasSupplierModel : productHasSupplierList) {
+                productHasSupplierModel.destroy();
             }
         }
 
-        Main.changeScreen("material");
+        for (int i = 0; i < tableViewSupplier.getItems().size(); i++) {
+            if (tableViewSupplier.getItems().get(i).getCheckBox().isSelected()) {
+                ProductHasSupplierModel productHasSupplierModel = new ProductHasSupplierModel(null);
+                productHasSupplierModel.setSupplierId(tableViewSupplier.getItems().get(i).getId());
+                productHasSupplierModel.setProductId(productModel.getId());
+                productHasSupplierModel.save();
+            }
+        }
+
+        Main.changeScreen("product");
     }
 
     @FXML
@@ -169,21 +175,22 @@ public class MaterialFormController {
         Form.onlyNumber(textFieldAlertEnding);
 
         if (Main.getStage().getUserData() == null) {
-            InternalScreenController.setPageTitle("Materiais ● Adicionar novo");
+            InternalScreenController.setPageTitle("Produtos ● Adicionar novo");
         } else {
-            this.materialModel = (MaterialModel) Main.getStage().getUserData();
+            this.productModel = (ProductModel) Main.getStage().getUserData();
             Main.getStage().setUserData(null);
 
             InternalScreenController.setPageTitle(
-                "Materiais ● " + materialModel.getName()
+                "Produtos ● " + productModel.getName()
             );
 
-            textFieldName.setText(materialModel.getName());
-            textFieldStock.setText(materialModel.getStock());
-            textFieldAlertEnding.setText(materialModel.getAlertEnding());
+            textFieldName.setText(productModel.getName());
+            textFieldPrice.setText(productModel.getPrice());
+            textFieldStock.setText(productModel.getStock());
+            textFieldAlertEnding.setText(productModel.getAlertEnding());
 
             for (MeasureTypeModel measureTypeModel : comboBoxMeasureType.getItems()) {
-                if (measureTypeModel.getId().equals(materialModel.getMeasureTypeId())) {
+                if (measureTypeModel.getId().equals(productModel.getMeasureTypeId())) {
                     comboBoxMeasureType.getSelectionModel().select(measureTypeModel);
                     break;
                 }
@@ -239,20 +246,20 @@ public class MaterialFormController {
 
         tableViewSupplier.setItems(sortedListSupplier);
 
-        if (this.materialModel == null) {
+        if (this.productModel == null) {
             return;
         }
 
-        ArrayList<MaterialHasSupplierModel> materialHasSupplierList = this.materialModel.getSuppliers();
+        ArrayList<ProductHasSupplierModel> productHasSupplierList = this.productModel.getSuppliers();
 
-        if (materialHasSupplierList == null) {
+        if (productHasSupplierList == null) {
             return;
         }
 
         ArrayList supplierIds = new ArrayList();
 
-        for (MaterialHasSupplierModel materialHasSupplierModel : materialHasSupplierList) {
-            supplierIds.add(materialHasSupplierModel.getSupplierId());
+        for (ProductHasSupplierModel productHasSupplierModel : productHasSupplierList) {
+            supplierIds.add(productHasSupplierModel.getSupplierId());
         }
 
         for (int i = 0; i < tableViewSupplier.getItems().size(); i++) {
